@@ -2,7 +2,7 @@ import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 import FileSystem from '../Utils/FileSystem';
 
-import { } from '../redux/action';
+import { setClient } from '../redux/action';
 import { store } from '../redux/store';
 
 const FS = new FileSystem();
@@ -13,6 +13,8 @@ export const makeClient = (port, onOpen) => {
         FS.setDebug(false)
         onOpen();
     };
+
+    clt.onerror = err => store.dispatch(setClient({}));
 
     clt.onmessage = message => {
         const cmd = message.data.slice(0, 3);

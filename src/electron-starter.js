@@ -2,6 +2,8 @@ const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
+const path = require('path');
+
 let mainWindow;
 
 const createWindow = () => {
@@ -14,7 +16,12 @@ const createWindow = () => {
         },
         resizable: false,
     });
-    mainWindow.loadURL('http://localhost:3000');
+    const startUrl = process.env.ELECTRON_START_URL || url.format({
+        pathname: path.join(__dirname, '/../build/index.html'),
+        protocol: 'file:',
+        slashes: true
+    });
+    mainWindow.loadURL(startUrl);
     mainWindow.webContents.openDevTools();
     mainWindow.on('closed', () => mainWindow = null);
 }

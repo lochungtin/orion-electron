@@ -1,4 +1,3 @@
-import React from 'react';
 const fs = window.require('fs');
 
 export default class FileSystem {
