@@ -18,6 +18,7 @@ export default class Login extends React.Component {
             address: '',
             devices: [],
             password: '',
+            prompt: '',
             select: {},
             state: 'connect ',
             username: '',
@@ -50,8 +51,12 @@ export default class Login extends React.Component {
                     if (account) {
                         if (account.password === this.state.password)
                             axios.get(`http://${this.state.address}:42070/devices/`)
-                                .then(res => this.setState({ account, devices: res.data, state: 'login' }));
+                                .then(res => this.setState({ account, devices: res.data, prompt: '', state: 'login' }));
+                        else
+                            this.setState({ prompt: 'Incorrect Password' });
                     }
+                    else
+                        this.setState({ prompt: 'Account Doesn\'t Exist' });
                 });
         }
     }
@@ -97,7 +102,10 @@ export default class Login extends React.Component {
                             </div>
                         </>}
 
-                    <div style={{ height: '6vh' }} />
+                    <div style={{ height: '3vh' }} />
+
+                    <p>{this.state.prompt}</p>
+                    <div style={{ height: '3vh' }} />
 
                     <button className='loginBtn' onClick={this.login}>
                         <p>{this.state.state}</p>
