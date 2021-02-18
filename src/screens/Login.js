@@ -41,7 +41,7 @@ export default class Login extends React.Component {
     login = () => {
         if (this.state.state === 'login') {
             store.dispatch(setClient(makeClient(this.state.address)));
-            store.dispatch(setDevice(this.state.select))
+            store.dispatch(setDevice(JSON.parse(this.state.select)))
             store.dispatch(setLogin(this.state.account));
         }
         else {
@@ -76,7 +76,7 @@ export default class Login extends React.Component {
                                 <select className='loginSelect' onChange={this.handleSelect}>
                                     {this.state.devices.map(dev => {
                                         return (
-                                            <option className='loginOption' key={dev._id} value={dev}>
+                                            <option className='loginOption' key={dev._id} value={JSON.stringify(dev)}>
                                                 {dev.name}
                                             </option>
                                         );

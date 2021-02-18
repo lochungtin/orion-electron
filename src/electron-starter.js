@@ -8,7 +8,7 @@ let mainWindow;
 
 const createWindow = () => {
     mainWindow = new BrowserWindow({ 
-        width: 900, 
+        width: 400, 
         height: 600, 
         webPreferences: { 
             nodeIntegration: true,
@@ -21,7 +21,6 @@ const createWindow = () => {
         protocol: 'file:',
         slashes: true
     });
-    mainWindow.removeMenu();
     mainWindow.loadURL(startUrl);
     mainWindow.webContents.openDevTools();
     mainWindow.on('closed', () => mainWindow = null);

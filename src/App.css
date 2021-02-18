@@ -5,20 +5,14 @@
     justify-content: center;
 }
 
-.content {
-    background-color: #2d2d41;
-    height: 100vh;
-    width: 85vw;
-}
-
 /* login page */
 
 .loginRoot {
     background-image: url('./img/loginBG.png');
-    background-size: 101vw;
+    background-size: 100vh;
 }
 
-.loginStrip {    
+.loginStrip {
     align-items: center;
     background-color: rgba(35, 35, 44, 0.4);
     display: flex;
@@ -84,7 +78,7 @@
 
 .loginBtn {
     align-items: center;
-    background-color:#e6b329;
+    background-color: #e6b329;
     border: 0;
     border-radius: 2.5vh;
     display: flex;
@@ -93,4 +87,72 @@
     margin-top: 2vh;
     outline: none !important;
     width: 35ch;
+}
+
+/* main page */
+
+.mainTopBar {
+    align-items: center;
+    display: flex;
+    height: 10vh;
+    justify-content: space-between;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+.mainLogo {
+    color: #e6b329;
+    font-size: 2.5ch;
+}
+
+.mainLoginText {
+    font-size: 1.5ch;
+}
+
+.mainStartBtnContainer {
+    background-color: #1f1f33;
+    border-radius: 1.5ch;
+    height: 5ch;
+    width: 5ch;
+}
+
+.mainStartBtn {
+    width: 3ch;
+}
+
+.mainContent {
+    background-color: #2d2d41;
+    height: 85vh;
+    overflow: scroll;
+    width: 100vw;
+}
+
+.mainDir {
+    align-items: center;
+    display: flex;
+    height: 7vh;
+    justify-content: space-between;
+}
+
+.mainFolderIcon {
+    margin-left: 5vw;
+    width: 4ch;
+}
+
+.mainFolderText {
+    width: 70vw;
+}
+
+.mainCheckbox {
+    margin-right: 5vw;
+    width: 2ch;
+}
+
+.mainBottomBar {
+    align-items: center;
+    display: flex;
+    height: 5vh;
+    justify-content: space-between;
+    padding-left: 5vw;
+    padding-right: 5vw;
 }

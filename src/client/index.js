@@ -1,6 +1,6 @@
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
-import FileSystem from '../Utils/FileSystem';
+import FileSystem from '../utils/FileSystem';
 
 const FS = new FileSystem();
 

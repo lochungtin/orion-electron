@@ -7,6 +7,8 @@ export default class FileSystem {
         this.debug = false;
     }
 
+    getCurDir = dir => fs.readdirSync(dir).filter(elem => fs.statSync(dir + '/' + elem).isDirectory());
+
     setDebug = val => this.debug = val;
 
     setIgnoreList = list => this.ignoreList = list;
