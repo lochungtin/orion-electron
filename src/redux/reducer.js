@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { SET_CLIENT, SET_LOGIN, SET_LOGOUT, SET_SEPARATOR, SET_STORAGE, } from './action';
+import { SET_CLIENT, SET_DEVICE, SET_LOGIN, SET_LOGOUT, SET_SEPARATOR, SET_STORAGE, } from './action';
 
 const acc = (acc = null, action) => {
     switch (action.type) {
@@ -12,11 +12,15 @@ const acc = (acc = null, action) => {
     return acc;
 }
 
+const dev = (dev = {}, action) => {
+    if (action.type === SET_DEVICE)
+        return action.payload;
+    return dev;
+}
+
 const clt = (clt = {}, action) => {
-    switch (action.type) {
-        case SET_CLIENT:
-            return action.payload;
-    }
+    if (action.type === SET_CLIENT)
+        return action.payload;
     return clt;
 }
 
@@ -36,5 +40,6 @@ const fs = (fs = fsInit, action) => {
 export default combineReducers({
     acc: acc,
     clt: clt,
+    dev: dev,
     fs: fs,
 });

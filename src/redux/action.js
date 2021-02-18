@@ -4,6 +4,12 @@ export const setClient = payload => ({
     payload,
 });
 
+export const SET_DEVICE = 'SET_DEVICE';
+export const setDevice = payload => ({
+    type: SET_DEVICE,
+    payload,
+});
+
 export const SET_FS = 'SET_FS';
 export const setFS = payload => ({
     type: SET_FS,

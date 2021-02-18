@@ -7,7 +7,7 @@ import Lock from '../img/icon/lock.png';
 import PC from '../img/icon/pc.png';
 import Server from '../img/icon/server.png';
 import User from '../img/icon/user.png';
-import { setClient, setLogin, } from '../redux/action';
+import { setClient, setDevice, setLogin, } from '../redux/action';
 import { store } from '../redux/store';
 
 class Login extends React.Component {
@@ -19,6 +19,7 @@ class Login extends React.Component {
             address: '',
             devices: [],
             password: '',
+            select: {},
             state: 'connect ',
             username: '',
         }
@@ -26,6 +27,7 @@ class Login extends React.Component {
         this.handleAddr = this.handleAddr.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
         this.handlePswd = this.handlePswd.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
     }
 
     handleAddr = event => this.setState({ address: event.target.value });
@@ -34,11 +36,13 @@ class Login extends React.Component {
 
     handlePswd = event => this.setState({ password: event.target.value });
 
+    handleSelect = event => this.setState({ select: event.target.value });
+
     login = () => {
         if (this.state.state === 'login') {
-            const client = makeClient(this.state.address);
+            store.dispatch(setClient(makeClient(this.state.address)));
+            store.dispatch(setDevice(this.state.select))
             store.dispatch(setLogin(this.state.account));
-            store.dispatch(setClient(client));
         }
         else {
             axios.get(`http://${this.state.address}:42070/accounts/`)
@@ -65,10 +69,10 @@ class Login extends React.Component {
                             <p className='noselect loginInputLabel'>Select Registered Device</p>
                             <div className='loginInputBox'>
                                 <img className='noselect loginIcons' src={PC} alt='logo' />
-                                <select className='loginSelect'>
+                                <select className='loginSelect' onChange={this.handleSelect}>
                                     {this.state.devices.map(dev => {
                                         return (
-                                            <option className='loginOption'>
+                                            <option className='loginOption' value={dev}>
                                                 {dev.name}
                                             </option>
                                         );
