@@ -88,7 +88,7 @@ class Main extends React.Component {
                         return (
                             <div className='mainDir' key={dir}>
                                 <img className='noselect mainFolderIcon' src={FolderR} alt='folder' />
-                                <p className='noselect mainFolderText'>{dir}</p>
+                                <p className='noselect mainFolderText'>{'[r] ' + dir}</p>
                                 <button onClick={() => this.toggleAddList(dir)}>
                                     <img className='noselect mainCheckbox' src={this.state.addList.includes(dir) ? Check : Unchecked} alt='checkbox' />
                                 </button>
