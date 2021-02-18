@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { SET_CLIENT, SET_DEVICE, SET_LOGIN, SET_LOGOUT, SET_SEPARATOR, SET_STORAGE, } from './action';
+import { SET_CLIENT, SET_DEVICE, SET_LOGIN, SET_LOGOUT, SET_SEPARATOR, } from './action';
 
 const acc = (acc = null, action) => {
     switch (action.type) {

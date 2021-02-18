@@ -21,6 +21,7 @@ const createWindow = () => {
         protocol: 'file:',
         slashes: true
     });
+    mainWindow.removeMenu();
     mainWindow.loadURL(startUrl);
     mainWindow.webContents.openDevTools();
     mainWindow.on('closed', () => mainWindow = null);

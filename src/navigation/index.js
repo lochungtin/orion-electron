@@ -1,22 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Login from '../screens/Login';
+import Main from '../screens/Main';
 
 class AppNav extends React.Component {
 
     render() {
-        return (
-            <>
-                {this.props.acc === null ?
-                    <Login /> :
-                    <Router>
-                        
-                    </Router>
-                }
-            </>
-        );
+        return this.props.acc === null ? <Login /> : <Main />;
     }
 }
 

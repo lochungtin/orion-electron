@@ -100,7 +100,8 @@ export default class Login extends React.Component {
                                 <img className='noselect loginIcons' src={Lock} alt='logo' />
                                 <input className='loginInput' type='password' placeholder='Type your password' onChange={this.handlePswd} />
                             </div>
-                        </>}
+                        </>
+                    }
 
                     <div style={{ height: '3vh' }} />
 
