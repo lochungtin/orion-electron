@@ -10,9 +10,11 @@ class AppNav extends React.Component {
         return (
             <>
                 {this.props.acc === null ?
-                    <Login /> :
+                    <div className='root'>
+                        <Login />
+                    </div> :
                     <Router>
-
+                        
                     </Router>
                 }
             </>

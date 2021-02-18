@@ -16,11 +16,7 @@ const createWindow = () => {
         },
         resizable: false,
     });
-    const startUrl = process.env.ELECTRON_START_URL || url.format({
-        pathname: path.join(__dirname, '/../build/index.html'),
-        protocol: 'file:',
-        slashes: true
-    });
+    const startUrl = 'http://localhost:3000';
     mainWindow.loadURL(startUrl);
     mainWindow.webContents.openDevTools();
     mainWindow.on('closed', () => mainWindow = null);
