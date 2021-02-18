@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { makeClient } from '../client';
 import Lock from '../img/icon/lock.png';
@@ -10,7 +9,7 @@ import User from '../img/icon/user.png';
 import { setClient, setDevice, setLogin, } from '../redux/action';
 import { store } from '../redux/store';
 
-class Login extends React.Component {
+export default class Login extends React.Component {
 
     constructor(props) {
         super(props);
@@ -108,9 +107,3 @@ class Login extends React.Component {
         )
     }
 }
-
-const mapStateToProps = state => ({
-    str: state.str,
-})
-
-export default connect(mapStateToProps)(Login);
