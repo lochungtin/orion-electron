@@ -12,7 +12,7 @@ class AppNav extends React.Component {
                 {this.props.acc === null ?
                     <Login /> :
                     <Router>
-
+                        
                     </Router>
                 }
             </>

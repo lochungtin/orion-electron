@@ -8,15 +8,19 @@ let mainWindow;
 
 const createWindow = () => {
     mainWindow = new BrowserWindow({ 
-        width: 1400, 
-        height: 900, 
+        width: 900, 
+        height: 600, 
         webPreferences: { 
             nodeIntegration: true,
             webviewTag: false,
         },
         resizable: false,
     });
-    const startUrl = 'http://localhost:3000';
+    const startUrl = process.env.ELECTRON_START_URL || url.format({
+        pathname: path.join(__dirname, '/../build/index.html'),
+        protocol: 'file:',
+        slashes: true
+    });
     mainWindow.loadURL(startUrl);
     mainWindow.webContents.openDevTools();
     mainWindow.on('closed', () => mainWindow = null);

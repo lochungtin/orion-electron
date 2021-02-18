@@ -20,7 +20,7 @@ export default class Login extends React.Component {
             password: '',
             prompt: '',
             select: {},
-            state: 'connect ',
+            state: 'connect',
             username: '',
         }
 
@@ -76,7 +76,7 @@ export default class Login extends React.Component {
                                 <select className='loginSelect' onChange={this.handleSelect}>
                                     {this.state.devices.map(dev => {
                                         return (
-                                            <option className='loginOption' value={dev}>
+                                            <option className='loginOption' key={dev._id} value={dev}>
                                                 {dev.name}
                                             </option>
                                         );
