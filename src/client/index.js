@@ -1,5 +1,7 @@
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
+import { setRemoteFS } from '../redux/action';
+import { store } from "../redux/store";
 import FileSystem from '../utils/FileSystem';
 
 const FS = new FileSystem();
@@ -17,6 +19,9 @@ export const makeClient = address => {
                 const files = [];
                 FS.travel(payload, path => dirs.push(path), files => files.push(files), true);
                 clt.send('cfs' + JSON.stringify({ dirs, files }));
+                break;
+            case 'cnt':
+                store.dispatch(setRemoteFS(JSON.parse(payload).dirs));
                 break;
         }
     }

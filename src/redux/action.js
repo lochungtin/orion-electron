@@ -10,9 +10,9 @@ export const setDevice = payload => ({
     payload,
 });
 
-export const SET_FS = 'SET_FS';
-export const setFS = payload => ({
-    type: SET_FS,
+export const SET_LOCAL_FS = 'SET_LOCAL_FS';
+export const setLocalFS = payload => ({
+    type: SET_LOCAL_FS,
     payload,
 });
 
@@ -25,6 +25,12 @@ export const setLogin = payload => ({
 export const SET_LOGOUT = 'SET_LOGOUT';
 export const setLogout = () => ({
     type: SET_LOGOUT,
+});
+
+export const SET_REMOTE_FS = 'SET_REMOTE_FS';
+export const setRemoteFS = payload => ({
+    type: SET_REMOTE_FS,
+    payload,
 });
 
 export const SET_SEPARATOR = 'SET_SEPARATOR';

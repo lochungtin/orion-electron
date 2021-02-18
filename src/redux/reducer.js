@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { SET_CLIENT, SET_DEVICE, SET_LOGIN, SET_LOGOUT, SET_SEPARATOR, } from './action';
+import { SET_CLIENT, SET_DEVICE, SET_LOCAL_FS, SET_LOGIN, SET_LOGOUT, SET_REMOTE_FS, SET_SEPARATOR, } from './action';
 
 const acc = (acc = null, action) => {
     switch (action.type) {
@@ -25,11 +25,21 @@ const clt = (clt = {}, action) => {
 }
 
 const fsInit = {
+    root: {
+        local: [],
+        remote: [],
+    },
     separator: '/',
 }
 const fs = (fs = fsInit, action) => {
     let update = { ...fs };
     switch (action.type) {
+        case SET_LOCAL_FS:
+            update.root.local = action.payload;
+            return update;
+        case SET_REMOTE_FS:
+            update.root.remote = action.payload;
+            return update;
         case SET_SEPARATOR:
             update.separator = action.payload;
             return update;

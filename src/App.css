@@ -110,14 +110,23 @@
 }
 
 .mainStartBtnContainer {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.mainStartBtn {
+    align-items: center;
     background-color: #1f1f33;
     border-radius: 1.5ch;
+    display: flex;
+    justify-content: center;
     height: 5ch;
     margin-left: 3vw;
     width: 5ch;
 }
 
-.mainStartBtn {
+.mainStartBtnIcon {
     width: 3ch;
 }
 
