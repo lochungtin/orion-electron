@@ -35,7 +35,7 @@
     margin-top: 3vh;
     margin-bottom: 1vh;
     color: #e0e0e0;
-    width: 30ch;
+    width: 27ch;
 }
 
 .loginInputBox {
@@ -43,7 +43,7 @@
     display: flex;
     border-bottom: #e0e0e0 solid 1px;
     padding-bottom: 1vh;
-    width: 30ch;
+    width: 27ch;
 }
 
 .loginInput {
@@ -53,7 +53,7 @@
     height: 3vh;
     padding-left: 1vh;
     outline: none;
-    width: 30ch;
+    width: 27ch;
 }
 
 .loginInput::placeholder {
@@ -67,7 +67,7 @@
     height: 3vh;
     padding-left: 1vh;
     outline: none;
-    width: 34ch;
+    width: 30ch;
 }
 
 .loginOption {
@@ -86,7 +86,7 @@
     justify-content: center;
     margin-top: 2vh;
     outline: none !important;
-    width: 35ch;
+    width: 32ch;
 }
 
 /* main page */
