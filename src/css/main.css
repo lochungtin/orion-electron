@@ -1,0 +1,83 @@
+.mainTopBar {
+    align-items: center;
+    display: flex;
+    height: 10vh;
+    justify-content: space-between;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+.mainLogo {
+    color: #e6b329;
+    font-size: 2.5ch;
+}
+
+.mainLoginText {
+    font-size: 1.5ch;
+}
+
+.mainStartBtnContainer {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.mainStartBtn {
+    align-items: center;
+    background-color: #1e1e1e;
+    border-radius: 1.5ch;
+    display: flex;
+    justify-content: center;
+    height: 5ch;
+    margin-left: 3vw;
+    width: 5ch;
+}
+
+.mainStartBtnIcon {
+    opacity: 0.5;
+    transition: 0.3s;
+    width: 3ch;
+}
+
+.mainStartBtnIcon:hover {
+    opacity: 1;
+}
+
+.mainContent {
+    background-color: #0e0e0e;
+    border-bottom: 0.5vh solid #1e1e1e;
+    border-top: 0.5vh solid #1e1e1e;
+    height: 84vh;
+    overflow: scroll;
+    width: 100vw;
+}
+
+.mainDir {
+    align-items: center;
+    display: flex;
+    height: 7vh;
+    justify-content: space-between;
+}
+
+.mainFolderIcon {
+    margin-left: 5vw;
+    width: 4ch;
+}
+
+.mainFolderText {
+    width: 70vw;
+}
+
+.mainCheckbox {
+    margin-right: 5vw;
+    width: 2ch;
+}
+
+.mainBottomBar {
+    align-items: center;
+    display: flex;
+    height: 5vh;
+    justify-content: space-between;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}

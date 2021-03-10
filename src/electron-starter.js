@@ -15,12 +15,14 @@ const createWindow = () => {
             webviewTag: false,
         },
         resizable: false,
+        
     });
     const startUrl = process.env.ELECTRON_START_URL || url.format({
         pathname: path.join(__dirname, '/../build/index.html'),
         protocol: 'file:',
         slashes: true
     });
+    mainWindow.removeMenu();
     mainWindow.loadURL(startUrl);
     mainWindow.webContents.openDevTools();
     mainWindow.on('closed', () => mainWindow = null);

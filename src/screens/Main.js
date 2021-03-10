@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Check from '../img/icon/check.png';
+import Drive from '../img/icon/drive.png';
 import Folder from '../img/icon/folder.png';
 import FolderR from '../img/icon/folderR.png';
 import Plus from '../img/icon/plus.png';
@@ -62,13 +63,30 @@ class Main extends React.Component {
         return (
             <div>
                 <div className='mainTopBar'>
-                    <p className='noselect mainLogo'>orion</p>
+                    <p className='noselect mainLogo'>
+                        orion
+                    </p>
                     <div className='mainStartBtnContainer'>
                         <button className='mainStartBtn' onClick={this.toggleRemote}>
-                            <img className='noselect mainStartBtnIcon' src={this.state.remote ? PlusS : Plus} alt='start' />
+                            <img
+                                alt='add'
+                                className='noselect mainStartBtnIcon'
+                                src={this.state.remote ? PlusS : Plus}
+                            />
                         </button>
                         <button className='mainStartBtn'>
-                            <img className='noselect mainStartBtnIcon' src={Refresh} alt='start' />
+                            <img
+                                alt='start'
+                                className='noselect mainStartBtnIcon'
+                                src={Refresh}
+                            />
+                        </button>
+                        <button className='mainStartBtn'>
+                            <img
+                                alt='local'
+                                className='noselect mainStartBtnIcon'
+                                src={Drive}
+                            />
                         </button>
                     </div>
                 </div>
@@ -77,9 +95,15 @@ class Main extends React.Component {
                         return (
                             <div className='mainDir' key={dir}>
                                 <img className='noselect mainFolderIcon' src={Folder} alt='folder' />
-                                <p className='noselect mainFolderText'>{dir}</p>
+                                <p className='noselect mainFolderText'>
+                                    {dir}
+                                </p>
                                 <button onClick={() => this.toggleSubList(dir)}>
-                                    <img className='noselect mainCheckbox' src={this.state.subList.includes(dir) ? Check : Unchecked} alt='checkbox' />
+                                    <img
+                                        alt='checkbox'
+                                        className='noselect mainCheckbox'
+                                        src={this.state.subList.includes(dir) ? Check : Unchecked}
+                                    />
                                 </button>
                             </div>
                         );
@@ -87,17 +111,29 @@ class Main extends React.Component {
                     {this.state.remote && this.props.fs.root.remote.filter(dir => !this.props.fs.root.local.includes(dir)).map(dir => {
                         return (
                             <div className='mainDir' key={dir}>
-                                <img className='noselect mainFolderIcon' src={FolderR} alt='folder' />
-                                <p className='noselect mainFolderText'>{'[r] ' + dir}</p>
+                                <img
+                                    alt='folder'
+                                    className='noselect mainFolderIcon'
+                                    src={FolderR}
+                                />
+                                <p className='noselect mainFolderText'>
+                                    {'[r] ' + dir}
+                                </p>
                                 <button onClick={() => this.toggleAddList(dir)}>
-                                    <img className='noselect mainCheckbox' src={this.state.addList.includes(dir) ? Check : Unchecked} alt='checkbox' />
+                                    <img
+                                        alt='checkbox'
+                                        className='noselect mainCheckbox'
+                                        src={this.state.addList.includes(dir) ? Check : Unchecked}
+                                    />
                                 </button>
                             </div>
                         );
                     })}
                 </div>
                 <div className='mainBottomBar'>
-                    <p className='noselect mainLoginText'>{`Logged In As: ${this.props.dev.name}`}</p>
+                    <p className='noselect mainLoginText'>
+                        {`Logged In As: ${this.props.dev.name}`}
+                    </p>
                 </div>
             </div>
         );

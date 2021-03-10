@@ -1,0 +1,81 @@
+.loginRoot {
+    background-image: url('../img/loginBG.png');
+    background-size: 100vh;
+}
+
+.loginStrip {
+    align-items: center;
+    background-color: rgba(15, 15, 15, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.loginIcons {
+    height: 3ch;
+}
+
+.loginText {
+    font-size: 5ch;
+    color: #e0e0e0;
+}
+
+.loginInputLabel {
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+    color: #e0e0e0;
+    width: 27ch;
+}
+
+.loginInputBox {
+    align-items: center;
+    display: flex;
+    border-bottom: #e0e0e0 solid 1px;
+    padding-bottom: 1vh;
+    width: 27ch;
+}
+
+.loginInput {
+    background-color: transparent;
+    border: 0;
+    color: #e0e0e0;
+    height: 3vh;
+    padding-left: 1vh;
+    outline: none;
+    width: 27ch;
+}
+
+.loginInput::placeholder {
+    color: #8a8a9c;
+}
+
+.loginSelect {
+    background-color: transparent;
+    border: 0;
+    color: #e0e0e0;
+    height: 3vh;
+    padding-left: 1vh;
+    outline: none;
+    width: 30ch;
+}
+
+.loginOption {
+    background-color: #1a1a24;
+    outline: none;
+    border: 0;
+}
+
+.loginBtn {
+    align-items: center;
+    background-color: #e6b329;
+    border: 0;
+    border-radius: 2.5vh;
+    display: flex;
+    height: 5vh;
+    justify-content: center;
+    margin-top: 2vh;
+    outline: none !important;
+    width: 32ch;
+}

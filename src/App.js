@@ -5,6 +5,8 @@ import { store } from './redux/store';
 import AppNav from './navigation';
 
 import './App.css';
+import './css/login.css';
+import './css/main.css';
 
 export default class App extends React.Component {
 
