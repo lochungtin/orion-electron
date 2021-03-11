@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 
 import NavBarBtn from '../components/NavBarBtn';
@@ -15,12 +14,10 @@ import PlusS from '../img/icon/plusS.png';
 import Save from '../img/icon/save.png';
 import StartRemote from '../img/icon/refresh.png';
 
-import { setLocalFS, setRemoteFS, } from '../redux/action';
+import { setRemoteFS } from '../redux/action';
 import { store } from "../redux/store";
-import FileSystem from '../utils/FileSystem';
 
-
-class Main extends React.Component {
+class Screen extends React.Component {
 
     constructor(props) {
         super(props);
@@ -30,11 +27,6 @@ class Main extends React.Component {
             remote: false,
             subList: [],
         }
-
-        this.fs = new FileSystem();
-        this.fs.setDebug(false);
-
-        store.dispatch(setLocalFS(this.fs.getCurDir(props.dev.rootDir)));
     }
 
     toggleAddList = dir => {
@@ -71,8 +63,8 @@ class Main extends React.Component {
                 <NavBar>
                     <NavBarBtn icon={this.state.remote ? PlusS : Plus} />
                     <NavBarBtn icon={Save} />
-                    <NavBarBtn icon={StartRemote} />
-                    <NavBarBtn icon={Drive} />
+                    <NavBarBtn icon={StartRemote} to={'/loading'} />
+                    <NavBarBtn icon={Drive} to={'/local'}/>
                 </NavBar>
                 <div className='content'>
                     {this.props.fs.root.local.map(dir => {
@@ -126,4 +118,4 @@ const mapStateToProps = state => ({
     fs: state.fs,
 });
 
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps)(Screen);

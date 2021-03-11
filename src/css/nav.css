@@ -19,22 +19,22 @@
 }
 
 .navBtn {
-    align-items: center;
-    background-color: #1e1e1e;
-    border-radius: 1.5ch;
+    align-items: center;    
+    background-color: #2e2e2e;    
+    border-radius: 3vw;
     display: flex;
+    height: 10vw;
     justify-content: center;
-    height: 5ch;
     margin-left: 3vw;
-    width: 5ch;
+    width: 10vw;
+    opacity: 0.5;
+    transition: 0.3s;
 }
 
 .navBtnIcon {
-    opacity: 0.5;
-    transition: 0.3s;
     width: 3ch;
 }
 
-.navBtnIcon:hover {
+.navBtn:hover {
     opacity: 1;
 }
