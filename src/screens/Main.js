@@ -1,18 +1,24 @@
 import axios from 'axios';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import NavBar from '../components/NavBar';
 
+import NavBarBtn from '../components/NavBarBtn';
 import Check from '../img/icon/check.png';
-import Drive from '../img/icon/drive.png';
 import Folder from '../img/icon/folder.png';
 import FolderR from '../img/icon/folderR.png';
+import Unchecked from '../img/icon/unchecked.png';
+import Drive from '../img/icon/drive.png';
 import Plus from '../img/icon/plus.png';
 import PlusS from '../img/icon/plusS.png';
-import Refresh from '../img/icon/refresh.png';
-import Unchecked from '../img/icon/unchecked.png';
+import Save from '../img/icon/save.png';
+import StartRemote from '../img/icon/refresh.png';
+
 import { setLocalFS, setRemoteFS, } from '../redux/action';
 import { store } from "../redux/store";
 import FileSystem from '../utils/FileSystem';
+
 
 class Main extends React.Component {
 
@@ -61,36 +67,14 @@ class Main extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className='mainTopBar'>
-                    <p className='noselect mainLogo'>
-                        orion
-                    </p>
-                    <div className='mainStartBtnContainer'>
-                        <button className='mainStartBtn' onClick={this.toggleRemote}>
-                            <img
-                                alt='add'
-                                className='noselect mainStartBtnIcon'
-                                src={this.state.remote ? PlusS : Plus}
-                            />
-                        </button>
-                        <button className='mainStartBtn'>
-                            <img
-                                alt='start'
-                                className='noselect mainStartBtnIcon'
-                                src={Refresh}
-                            />
-                        </button>
-                        <button className='mainStartBtn'>
-                            <img
-                                alt='local'
-                                className='noselect mainStartBtnIcon'
-                                src={Drive}
-                            />
-                        </button>
-                    </div>
-                </div>
-                <div className='mainContent'>
+            <>
+                <NavBar>
+                    <NavBarBtn icon={this.state.remote ? PlusS : Plus} />
+                    <NavBarBtn icon={Save} />
+                    <NavBarBtn icon={StartRemote} />
+                    <NavBarBtn icon={Drive} />
+                </NavBar>
+                <div className='content'>
                     {this.props.fs.root.local.map(dir => {
                         return (
                             <div className='mainDir' key={dir}>
@@ -130,12 +114,7 @@ class Main extends React.Component {
                         );
                     })}
                 </div>
-                <div className='mainBottomBar'>
-                    <p className='noselect mainLoginText'>
-                        {`Logged In As: ${this.props.dev.name}`}
-                    </p>
-                </div>
-            </div>
+            </>
         );
     }
 }

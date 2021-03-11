@@ -1,0 +1,40 @@
+.navTopBar {
+    align-items: center;
+    display: flex;
+    height: 10vh;
+    justify-content: space-between;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+.navLogo {
+    color: #e6b329;
+    font-size: 2.5ch;
+}
+
+.navBtnContainer {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.navBtn {
+    align-items: center;
+    background-color: #1e1e1e;
+    border-radius: 1.5ch;
+    display: flex;
+    justify-content: center;
+    height: 5ch;
+    margin-left: 3vw;
+    width: 5ch;
+}
+
+.navBtnIcon {
+    opacity: 0.5;
+    transition: 0.3s;
+    width: 3ch;
+}
+
+.navBtnIcon:hover {
+    opacity: 1;
+}

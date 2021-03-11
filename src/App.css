@@ -4,3 +4,12 @@
     flex: 1;
     justify-content: center;
 }
+
+.content {
+    background-color: #0e0e0e;
+    border-bottom: 0.5vh solid #1e1e1e;
+    border-top: 0.5vh solid #1e1e1e;
+    height: 84vh;
+    overflow: scroll;
+    width: 100vw;
+}

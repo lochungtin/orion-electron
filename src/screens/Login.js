@@ -15,13 +15,13 @@ export default class Login extends React.Component {
         super(props);
         this.state = {
             account: {},
-            address: '',
+            address: '192.168.1.119',
             devices: [],
-            password: '',
+            password: '14709832',
             prompt: '',
             select: {},
             state: 'connect',
-            username: '',
+            username: 'enigma',
         }
 
         this.handleAddr = this.handleAddr.bind(this);
@@ -68,19 +68,31 @@ export default class Login extends React.Component {
         return (
             <div className='loginRoot'>
                 <div className='loginStrip'>
-                    <p className='noselect loginText'>orion.</p>
+                    <p className='noselect loginText'>
+                        orion.
+                    </p>
                     <div style={{ height: '2vh' }} />
 
                     {this.state.state === 'login' ?
                         <>
                             <div style={{ height: '2vh' }} />
-                            <p className='noselect loginInputLabel'>Select Registered Device</p>
+                            <p className='noselect loginInputLabel'>
+                                Select Registered Device
+                            </p>
                             <div className='loginInputBox'>
-                                <img className='noselect loginIcons' src={PC} alt='logo' />
+                                <img
+                                    alt='logo'
+                                    className='noselect loginIcons'
+                                    src={PC}
+                                />
                                 <select className='loginSelect' onChange={this.handleSelect}>
                                     {this.state.devices.map(dev => {
                                         return (
-                                            <option className='loginOption' key={dev._id} value={JSON.stringify(dev)}>
+                                            <option
+                                                className='loginOption'
+                                                key={dev._id}
+                                                value={JSON.stringify(dev)}
+                                            >
                                                 {dev.name}
                                             </option>
                                         );
@@ -89,31 +101,68 @@ export default class Login extends React.Component {
                             </div>
                         </> :
                         <>
-                            <p className='noselect loginInputLabel'>Server Address</p>
+                            <p className='noselect loginInputLabel'>
+                                Server Address
+                            </p>
                             <div className='loginInputBox'>
-                                <img className='noselect loginIcons' src={Server} alt='logo' />
-                                <input className='loginInput' type='text' placeholder='Type your Raspberry PI address' onChange={this.handleAddr} />
+                                <img
+                                    alt='logo'
+                                    className='noselect loginIcons'
+                                    src={Server}
+                                />
+                                <input
+                                    className='loginInput'
+                                    onChange={this.handleAddr}
+                                    placeholder='Type your Raspberry PI address'
+                                    type='text'
+                                />
                             </div>
-                            <p className='noselect loginInputLabel'>Username</p>
+                            <p className='noselect loginInputLabel'>
+                                Username
+                            </p>
                             <div className='loginInputBox'>
-                                <img className='noselect loginIcons' src={User} alt='logo' />
-                                <input className='loginInput' type='text' placeholder='Type your username' onChange={this.handleEmail} />
+                                <img
+                                    alt='logo'
+                                    className='noselect loginIcons'
+                                    src={User}
+                                />
+                                <input
+                                    className='loginInput'
+                                    onChange={this.handleEmail}
+                                    placeholder='Type your username'
+                                    type='text'
+                                />
                             </div>
-                            <p className='noselect loginInputLabel'>Password</p>
+                            <p className='noselect loginInputLabel'>
+                                Password
+                            </p>
                             <div className='loginInputBox'>
-                                <img className='noselect loginIcons' src={Lock} alt='logo' />
-                                <input className='loginInput' type='password' placeholder='Type your password' onChange={this.handlePswd} />
+                                <img
+                                    alt='logo'
+                                    className='noselect loginIcons'
+                                    src={Lock}
+                                />
+                                <input
+                                    className='loginInput'
+                                    onChange={this.handlePswd}
+                                    placeholder='Type your password'
+                                    type='password'
+                                />
                             </div>
                         </>
                     }
 
                     <div style={{ height: '3vh' }} />
 
-                    <p>{this.state.prompt}</p>
+                    <p>
+                        {this.state.prompt}
+                    </p>
                     <div style={{ height: '3vh' }} />
 
                     <button className='loginBtn' onClick={this.login}>
-                        <p>{this.state.state}</p>
+                        <p>
+                            {this.state.state}
+                        </p>
                     </button>
                     <div style={{ height: '5vh' }} />
                 </div>
