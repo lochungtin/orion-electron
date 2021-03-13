@@ -1,0 +1,22 @@
+.loadingProgressContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15vh;
+    width: 100vw;
+}
+
+.loadingProgressCircle {
+    height: 50vh
+}
+
+.loadingProgressText {
+    font-size: 3ch;
+    position: absolute;
+    height: 3vh;
+    top: 46.5vh;
+}
+
+.loadingText {
+    margin-top: 8ch;
+}
