@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import NavBar from '../components/NavBar';
 
+import NavBar from '../components/NavBar';
 import NavBarBtn from '../components/NavBarBtn';
 import Check from '../img/icon/check.png';
 import Clone from '../img/icon/clone.png';
@@ -10,6 +10,9 @@ import Folder from '../img/icon/folder.png';
 import Unchecked from '../img/icon/unchecked.png';
 import Overwrite from '../img/icon/overwrite.png';
 import Sync from '../img/icon/sync.png';
+import { store } from '../redux/store';
+import { setAction } from '../redux/action';
+import { withRouter } from 'react-router-dom';
 
 class Screen extends React.Component {
 
@@ -19,6 +22,11 @@ class Screen extends React.Component {
         this.state = {
             subList: [],
         }
+    }
+
+    startBackup = type => {
+        store.dispatch(setAction(type));
+        this.props.history.push('/device');
     }
 
     toggleSubList = dir => {
@@ -34,7 +42,7 @@ class Screen extends React.Component {
         return (
             <>
                 <NavBar>
-                    <NavBarBtn icon={Clone} />
+                    <NavBarBtn icon={Clone} onClick={() => this.startBackup('clone')}/>
                     <NavBarBtn icon={Sync} />
                     <NavBarBtn icon={Overwrite} />
                     <NavBarBtn icon={DriveS} to={'/main'}/>
@@ -70,4 +78,4 @@ const mapStateToProps = state => ({
     fs: state.fs,
 });
 
-export default connect(mapStateToProps)(Screen);
+export default withRouter(connect(mapStateToProps)(Screen));

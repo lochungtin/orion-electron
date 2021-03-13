@@ -6,8 +6,10 @@ import Lock from '../img/icon/lock.png';
 import PC from '../img/icon/pc.png';
 import Server from '../img/icon/server.png';
 import User from '../img/icon/user.png';
-import { setClient, setDevice, setLogin, } from '../redux/action';
+
+import { setClient, setDevice, setLocalFS, setLogin, } from '../redux/action';
 import { store } from '../redux/store';
+import FileSystem from '../utils/FileSystem';
 
 export default class Login extends React.Component {
 
@@ -40,8 +42,14 @@ export default class Login extends React.Component {
 
     login = () => {
         if (this.state.state === 'login') {
+            const dev = JSON.parse(this.state.select);
+
+            let fs = new FileSystem();
+            fs.setDebug(false);
+
+            store.dispatch(setLocalFS(fs.getCurDir(dev.rootDir)));
             store.dispatch(setClient(makeClient(this.state.address)));
-            store.dispatch(setDevice(JSON.parse(this.state.select)))
+            store.dispatch(setDevice(dev));
             store.dispatch(setLogin(this.state.account));
         }
         else {

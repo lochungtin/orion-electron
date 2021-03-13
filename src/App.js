@@ -5,6 +5,7 @@ import { store } from './redux/store';
 import AppNav from './navigation';
 
 import './App.css';
+import './css/device.css';
 import './css/login.css';
 import './css/main.css';
 import './css/nav.css';

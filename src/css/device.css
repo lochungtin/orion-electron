@@ -1,0 +1,47 @@
+.deviceTopTextContainer {
+    align-items: center;
+    background-color: rgba(31, 31, 31, 0.2);
+    display: flex;
+    justify-content: center;
+    height: 8vh;
+}
+
+.deviceTopText {    
+    text-align: center;
+    width: 100vw;
+}
+
+.deviceDriveContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 76vh;
+}
+
+.deviceDrive {
+    align-items: center;
+    background-color: rgba(31, 31, 31, 0.2);
+    border-radius: 1ch;
+    display: flex;
+    justify-content: space-between;
+    height: 6ch;
+    margin-top: 1.5ch;
+    opacity: 0.5;
+    padding-left: 3ch;
+    padding-right: 3ch;
+    transition: 0.2s;
+    width: 70vw;
+}
+
+.deviceDrive:hover {
+    opacity: 1;
+}
+
+.deviceDriveImg {
+    width: 5ch;
+}
+
+.deviceDriveName {
+    color: #e0e0e0;
+    font-size: 2ch;
+}

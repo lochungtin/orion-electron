@@ -1,3 +1,9 @@
+export const SET_ACTION = 'SET_ACTION';
+export const setAction = payload => ({
+    type: SET_ACTION,
+    payload,
+});
+
 export const SET_CLIENT = 'SET_CLIENT';
 export const setClient = payload => ({
     type: SET_CLIENT,
@@ -7,6 +13,12 @@ export const setClient = payload => ({
 export const SET_DEVICE = 'SET_DEVICE';
 export const setDevice = payload => ({
     type: SET_DEVICE,
+    payload,
+});
+
+export const SET_DEVICE_LOCAL = 'SET_DEVICE_LOCAL';
+export const setDeviceLocal = payload => ({
+    type: SET_DEVICE_LOCAL,
     payload,
 });
 

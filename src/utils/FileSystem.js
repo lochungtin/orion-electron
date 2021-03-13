@@ -5,9 +5,37 @@ export default class FileSystem {
     constructor() {
         this.ignoreList = [];
         this.debug = false;
+
+        this.os = window.navigator.platform.substring(0, 3).toLowerCase();
+        this.separator = this.os === 'win' ? '\\' : '/';
     }
 
-    getCurDir = dir => fs.readdirSync(dir).filter(elem => fs.statSync(dir + '/' + elem).isDirectory());
+    getCurDir = dir => fs.readdirSync(dir).filter(elem => fs.statSync(dir + this.separator + elem).isDirectory());
+
+    getLocalDevices = () => {
+        let drives = [];
+        let prefix = '';
+        switch (this.os) {
+            case 'win':
+                const drive = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+                drive.forEach(letter => {
+                    try {
+                        const dir = letter + ':\\';
+                        fs.readdirSync(dir);
+                        drives.push(dir);
+                    }
+                    catch (err) { }
+                });
+                return drives;
+            case 'mac':
+                prefix = '/Volumes';
+                break;
+            default:
+                prefix = '/media/' + fs.readdirSync('/media')[0];
+                break;
+        }
+        return fs.readdirSync(prefix);
+    }
 
     setDebug = val => this.debug = val;
 
@@ -15,7 +43,7 @@ export default class FileSystem {
 
     travel = (root, onDir, onFile, printing) => {
         if (printing)
-            console.log('[ROOT] |' + root.substring(root.lastIndexOf('/') + 1));
+            console.log('[ROOT] |' + root.substring(root.lastIndexOf(this.separator) + 1));
         this.travelRec(root, root, onDir, onFile, printing);
     }
 
@@ -24,18 +52,18 @@ export default class FileSystem {
 
         let builder = '';
         if (printing)
-            for (let i = 0; i < dir.split('/').length - root.split('/').length + 1; ++i)
+            for (let i = 0; i < dir.split(this.separator).length - root.split(this.separator).length + 1; ++i)
                 builder += '--';
 
         content
             .filter(elem => {
                 for (let i = 0; i < this.ignoreList.length; ++i)
-                    if (this.ignoreList[i] === '/' + elem || this.ignoreList[i] === root + '/' + elem)
+                    if (this.ignoreList[i] === this.separator + elem || this.ignoreList[i] === root + this.separator + elem)
                         return false;
                 return true;
             })
             .forEach(elem => {
-                const path = dir + '/' + elem;
+                const path = dir + this.separator + elem;
                 try {
                     if (fs.statSync(path).isDirectory()) {
                         if (printing)
@@ -52,7 +80,7 @@ export default class FileSystem {
                     }
                 }
                 catch (e) {
-                    
+
                 }
             });
     }

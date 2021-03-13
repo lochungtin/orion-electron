@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { SET_CLIENT, SET_DEVICE, SET_LOCAL_FS, SET_LOGIN, SET_LOGOUT, SET_REMOTE_FS, SET_SEPARATOR, } from './action';
+import { SET_ACTION, SET_CLIENT, SET_DEVICE, SET_DEVICE_LOCAL, SET_LOCAL_FS, SET_LOGIN, SET_LOGOUT, SET_REMOTE_FS, SET_SEPARATOR, } from './action';
 
 const acc = (acc = null, action) => {
     switch (action.type) {
@@ -8,21 +8,18 @@ const acc = (acc = null, action) => {
             return action.payload;
         case SET_LOGOUT:
             return null;
+        default:
+            return acc;
     }
-    return acc;
 }
 
-const dev = (dev = {}, action) => {
-    if (action.type === SET_DEVICE)
-        return action.payload;
-    return dev;
-}
+const act = (act = '', action) => action.type === SET_ACTION ? action.payload : act;
 
-const clt = (clt = {}, action) => {
-    if (action.type === SET_CLIENT)
-        return action.payload;
-    return clt;
-}
+const dev = (dev = {}, action) => action.type === SET_DEVICE ? action.payload : dev;
+
+const devL = (dev = {}, action) => action.type === SET_DEVICE_LOCAL ? action.payload : dev;
+
+const clt = (clt = {}, action) => action.type === SET_CLIENT ? action.payload : clt;
 
 const fsInit = {
     root: {
@@ -43,13 +40,16 @@ const fs = (fs = fsInit, action) => {
         case SET_SEPARATOR:
             update.separator = action.payload;
             return update;
+        default:
+            return update;
     }
-    return update;
 }
 
 export default combineReducers({
     acc: acc,
+    act: act,
     clt: clt,
     dev: dev,
+    devL: devL,
     fs: fs,
 });
