@@ -22,6 +22,12 @@ export const setDeviceLocal = payload => ({
     payload,
 });
 
+export const SET_LOCAL_BACKUP_PLAN = 'SET_LOCAL_BACKUP_PLAN';
+export const setLocalBackupPlan = payload => ({
+    type: SET_LOCAL_BACKUP_PLAN,
+    payload,
+});
+
 export const SET_LOCAL_FS = 'SET_LOCAL_FS';
 export const setLocalFS = payload => ({
     type: SET_LOCAL_FS,

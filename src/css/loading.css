@@ -2,7 +2,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin-top: 15vh;
+    margin-top: 12vh;
     width: 100vw;
 }
 
@@ -14,9 +14,28 @@
     font-size: 3ch;
     position: absolute;
     height: 3vh;
-    top: 46.5vh;
+    top: 44vh;
 }
 
 .loadingText {
     margin-top: 8ch;
+}
+
+.loadingStartBtn {
+    align-items: center;
+    background-color: #e6b329;
+    border: 0;
+    border-radius: 2.5vh;
+    display: flex;
+    height: 5vh;
+    justify-content: center;
+    margin-top: 8ch;
+    opacity: 0.3;
+    outline: none !important;
+    transition: 0.2s;
+    width: 44vh;
+}
+
+.loadingStartBtn:hover {
+    opacity: 1;
 }

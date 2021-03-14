@@ -12,13 +12,18 @@ export default class FileSystem {
     // copy files
     copy = (from, to, path) => fs.copyFileSync(from + this.separator + path, to + this.separator + path);
 
+    // delete files
+    delete = path => fs.unlinkSync(path);
+
+    // check for changes
+    fileChange = (fileA, fileB, ignoreDate) => {
+        const timeA = fs.statSync(fileA).mtime;
+        const timeB = fs.statSync(fileB).mtime;
+        return timeA > timeB || (ignoreDate && (timeB > timeA));
+    }
+
     // filter ignored files and directories
-    filterIgnored = (root, elem) =>
-        this.ignoreList.forEach(ignore => {
-            if (ignore === this.separator + elem || ignore === root + this.separator + elem)
-                return false;
-            return true;
-        });
+    filterIgnored = (root, elem) => !this.ignoreList.includes(this.separator + elem) && !this.ignoreList.includes(root + this.separator + elem);
 
     // get directories in the current directory
     getCurDir = dir => fs.readdirSync(dir).filter(elem => fs.statSync(dir + this.separator + elem).isDirectory());
@@ -46,15 +51,21 @@ export default class FileSystem {
                 prefix = '/media/' + fs.readdirSync('/media')[0];
                 break;
         }
-        return fs.readdirSync(prefix);
+        return fs.readdirSync(prefix).map(drive => prefix + '/' + drive);
     }
 
     // mirror directory structure + mark changed files
-    scanDir = (rootA, rootB, onNewA, onNewB) => this.scanDirRec(rootA, rootB, rootA, rootB, onNewA, onNewB, '');
+    scanDir = (rootA, rootB, onNewA, onNewB, ignoreDate) => this.scanDirRec(rootA, rootB, rootA, rootB, onNewA, onNewB, '', ignoreDate);
 
-    scanDirRec = (rootA, rootB, pathA, pathB, onNewA, onNewB, dir) => {
+    scanDirRec = (rootA, rootB, pathA, pathB, onNewA, onNewB, dir, ignoreDate) => {
         pathA += (dir ? this.separator + dir : '');
         pathB += (dir ? this.separator + dir : '');
+
+        // ensure directories exist
+        if (!fs.existsSync(pathA))
+            fs.mkdirSync(pathA);
+        if (!fs.existsSync(pathB))
+            fs.mkdirSync(pathB);
 
         // get local and remote dir
         const contentA = fs.readdirSync(pathA).filter(elem => this.filterIgnored(pathA, elem));
@@ -78,23 +89,23 @@ export default class FileSystem {
         newDirB.forEach(newDir => fs.mkdirSync(pathB + this.separator + newDir));
 
         // mark files that a not in sync
-        const aHeader = rootA.length;
+        const aHeader = rootA.length + 1;
         fileA.forEach(file => {
             const fileA = pathA + this.separator + file;
             const fileB = pathB + this.separator + file;
-            if (!fs.existsSync(fileB) || fs.statSync(fileA).mtime > fs.statSync(fileB).mtime)
+            if (!fs.existsSync(fileB) || this.fileChange(fileA, fileB, ignoreDate))
                 onNewA(fileA.substring(aHeader));
         });
-        const bHeader = rootB.length;
+        const bHeader = rootB.length + 1;
         fileB.forEach(file => {
             const fileA = pathA + this.separator + file;
             const fileB = pathB + this.separator + file;
-            if (!fs.existsSync(fileA) || fs.statSync(fileB).mtime > fs.statSync(fileA).mtime)
+            if (!fs.existsSync(fileA) || this.fileChange(fileB, fileA, ignoreDate))
                 onNewB(fileB.substring(bHeader));
         });
 
         // recur to inner files
-        [...dirA, ...newDirA].forEach(dir => this.scanDirRec(rootA, rootB, pathA, pathB, onNewA, onNewB, dir));
+        [...dirA, ...newDirA].forEach(dir => this.scanDirRec(rootA, rootB, pathA, pathB, onNewA, onNewB, dir, ignoreDate));
     }
 
     // set ignore list for travelling and scanning

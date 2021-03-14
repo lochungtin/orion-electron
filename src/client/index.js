@@ -8,8 +8,6 @@ const FS = new FileSystem();
 
 export const makeClient = address => {
     const clt = new W3CWebSocket(`ws://${address}:42071`);
-    clt.onopen = () => FS.setDebug(false);
-
     clt.onmessage = message => {
         const cmd = message.data.slice(0, 3);
         const payload = message.data.substring(3);

@@ -43,11 +43,9 @@ export default class Login extends React.Component {
     login = () => {
         if (this.state.state === 'login') {
             const dev = JSON.parse(this.state.select);
+            const FS = new FileSystem();
 
-            let fs = new FileSystem();
-            fs.setDebug(false);
-
-            store.dispatch(setLocalFS(fs.getCurDir(dev.rootDir)));
+            store.dispatch(setLocalFS(FS.getCurDir(dev.rootDir)));
             store.dispatch(setClient(makeClient(this.state.address)));
             store.dispatch(setDevice(dev));
             store.dispatch(setLogin(this.state.account));

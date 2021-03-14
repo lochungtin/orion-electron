@@ -11,7 +11,7 @@ import Unchecked from '../img/icon/unchecked.png';
 import Overwrite from '../img/icon/overwrite.png';
 import Sync from '../img/icon/sync.png';
 import { store } from '../redux/store';
-import { setAction } from '../redux/action';
+import { setAction, setLocalBackupPlan } from '../redux/action';
 import { withRouter } from 'react-router-dom';
 
 class Screen extends React.Component {
@@ -26,6 +26,7 @@ class Screen extends React.Component {
 
     startBackup = type => {
         store.dispatch(setAction(type));
+        store.dispatch(setLocalBackupPlan(this.state.subList));
         this.props.history.push('/device');
     }
 
@@ -42,10 +43,10 @@ class Screen extends React.Component {
         return (
             <>
                 <NavBar>
-                    <NavBarBtn icon={Clone} onClick={() => this.startBackup('clone')}/>
-                    <NavBarBtn icon={Sync} />
-                    <NavBarBtn icon={Overwrite} />
-                    <NavBarBtn icon={DriveS} to={'/main'}/>
+                    <NavBarBtn icon={Clone} onClick={() => this.startBackup('clone')} />
+                    <NavBarBtn icon={Sync} onClick={() => this.startBackup('sync')} />
+                    <NavBarBtn icon={Overwrite} onClick={() => this.startBackup('overwrite')} />
+                    <NavBarBtn icon={DriveS} to={'/main'} />
                 </NavBar>
                 <div className='content'>
                     {this.props.fs.root.local.map(dir => {

@@ -37,8 +37,8 @@ class Screen extends React.Component {
         return (
             <>
                 <NavBar>
-                    <NavBarBtn icon={Refresh} onClick={this.refresh}/>
-                    <NavBarBtn icon={Start} onClick={this.start}/>
+                    <NavBarBtn icon={Refresh} onClick={this.refresh} />
+                    <NavBarBtn icon={Start} onClick={this.start} />
                 </NavBar>
                 <div className='content'>
                     <div className='deviceTopTextContainer col'>
@@ -48,6 +48,7 @@ class Screen extends React.Component {
                     </div>
                     <div className='deviceDriveContainer'>
                         {this.state.drives.map(dev => {
+                            const splt = dev.split(this.fs.separator);
                             return (
                                 <button key={dev} onClick={() => this.selectDrive(dev)}>
                                     <div className='deviceDrive' style={this.state.drive === dev ? { opacity: 1 } : undefined}>
@@ -56,7 +57,9 @@ class Screen extends React.Component {
                                             className='noselect deviceDriveImg'
                                             src={Drive}
                                         />
-                                        <p className='noselect deviceDriveName'>{dev}</p>
+                                        <p className='noselect deviceDriveName'>
+                                            {splt[splt.length - 1]}
+                                        </p>
                                     </div>
                                 </button>
                             );
